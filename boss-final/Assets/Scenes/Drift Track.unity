@@ -117398,6 +117398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motorForce: 1000
+  breakForce: -1000
   maxSteerAngle: 40
   massCenter: -0.9
   frontLeftWheelCollider: {fileID: 2706882452559209648}
@@ -117632,6 +117633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motorForce: 1000
+  breakForce: 0
   maxSteerAngle: 30
   massCenter: -0.9
   frontLeftWheelCollider: {fileID: 1184905813}

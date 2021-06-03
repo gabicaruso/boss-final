@@ -7,8 +7,11 @@ public class CarController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private float currentSteerAngle;
+    private float currentBreakForce;
+    private bool isBreaking;
 
     [SerializeField] private float motorForce;
+    [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
     [SerializeField] private float massCenter = -0.9f;
 
@@ -43,10 +46,29 @@ public class CarController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
     }
     
+    // private void HandleMotor()
+    // {   
+    //     frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
+    //     frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+    // }
+
     private void HandleMotor()
-    {   
+    {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        currentBreakForce = isBreaking ? breakForce : 0f;
+        if (isBreaking)
+        {
+            ApplayBreaking();
+        }
+    }
+
+    private void ApplayBreaking()
+    {
+        frontLeftWheelCollider.motorTorque = currentBreakForce;
+        frontRightWheelCollider.motorTorque = currentBreakForce;
+        rearLeftWheelCollider.motorTorque = currentBreakForce;
+        rearRightWheelCollider.motorTorque = currentBreakForce;
     }
 
     private void HadleSteering()
