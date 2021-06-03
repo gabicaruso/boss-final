@@ -114228,7 +114228,7 @@ MonoBehaviour:
       - {x: -0.3524704, y: 0, z: -20.649347}
       - {x: 0.6375483, y: 0, z: -20.780571}
       isClosed: 1
-      space: 2
+      space: 0
       controlMode: 2
       autoControlLength: 0.3
       boundsUpToDate: 0
@@ -114276,9 +114276,9 @@ MonoBehaviour:
       - 0
       - 0
       - 0
-      globalNormalsAngle: 0
+      globalNormalsAngle: 90
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
@@ -114295,7 +114295,7 @@ MonoBehaviour:
     showPathOptions: 1
     showVertexPathDisplayOptions: 0
     showVertexPathOptions: 1
-    showNormals: 0
+    showNormals: 1
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
@@ -114307,7 +114307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077402642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.8, y: -3.17, z: 209.6}
+  m_LocalPosition: {x: 234.8, y: 0.5, z: 209.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -117854,6 +117854,7 @@ GameObject:
   - component: {fileID: 4025776541023650400}
   - component: {fileID: 4025776541023650399}
   - component: {fileID: 4025776541023650398}
+  - component: {fileID: 4025776541023650401}
   m_Layer: 0
   m_Name: Car NPC
   m_TagString: Untagged
@@ -117915,6 +117916,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4025776541023650401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025776541023650397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aabe1a2dec93349b06e6e5dc51bc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCreator: {fileID: 2077402643}
+  endOfPathInstruction: 0
+  speed: 10
 --- !u!1 &4068929643675872848
 GameObject:
   m_ObjectHideFlags: 0
