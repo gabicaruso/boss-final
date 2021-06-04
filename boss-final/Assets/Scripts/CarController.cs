@@ -32,8 +32,11 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
+        FindObjectOfType<AudioManager>().Play("music");
+        FindObjectOfType<AudioManager>().Play("car idle");
+        
         rb.centerOfMass = new Vector3(0, massCenter, 0);
-        voltas = 3;
+        voltas = 1;
     }
 
     private void FixedUpdate()
@@ -58,6 +61,11 @@ public class CarController : MonoBehaviour
     
     private void HandleMotor()
     {
+        // if (verticalInput > 0)
+        // {
+        //     FindObjectOfType<AudioManager>().Play("motor");
+        // }
+
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentBreakForce = isBreaking ? breakForce : 0f;
