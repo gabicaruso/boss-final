@@ -26,10 +26,13 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearRightTransform;
 
     public Rigidbody rb;
+    private float check = 0;
+    public static int voltas;
 
     private void Start()
     {
         rb.centerOfMass = new Vector3(0, massCenter, 0);
+        voltas = 1;
     }
 
     private void FixedUpdate()
@@ -93,7 +96,42 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
-    }  
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if(col.CompareTag("check1") && check == 0)
+        {
+            Debug.Log($"check {check}, obj {col}");
+            check = 1;
+        }
+        if(col.CompareTag("check2") && check == 1)
+        {
+            Debug.Log($"check {check}, obj {col}");
+            check = 2;
+        }
+        if(col.CompareTag("check3") && check == 2)
+        {
+            Debug.Log($"check {check}, obj {col}");
+            check = 3;
+        }
+        if(col.CompareTag("check4") && check == 3)
+        {
+            Debug.Log($"check {check}, obj {col}");
+            check = 4;
+        }
+        if(col.CompareTag("check5") && check == 4)
+        {
+            Debug.Log($"check {check}, obj {col}");
+            check = 5;
+        }
+        if(col.CompareTag("check1") && check == 5)
+        {
+            Debug.Log($"check {check}, obj {col}");
+            voltas++;
+            check = 0;
+        }
+    }
 
     // private float horizontalInput;
     // private float verticalInput;
