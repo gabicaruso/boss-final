@@ -61,7 +61,7 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
-        // Debug.Log("GetInput()");
+        // // Debug.Log("GetInput()");
         // Vector3 pontoDeProva = transform.position + transform.forward * 3;
         // float distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(pontoDeProva);
         // Vector3 posicaoPontoNoPath = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
@@ -76,16 +76,17 @@ public class CarController : MonoBehaviour
         // {
         //     horizontalInput = -1;
         // }
-        // else
+        // else if(ang == 0)
         // {
         //     horizontalInput = 0;
         // }
+        // verticalInput = 1;
 
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        Debug.Log(horizontalInput);
-        Debug.Log(verticalInput);
-        // verticalInput = 1;
+
+        // Debug.Log(horizontalInput);
+        // Debug.Log(verticalInput);
     }
     
     private void HandleMotor()
