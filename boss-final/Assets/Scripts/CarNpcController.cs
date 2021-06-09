@@ -1,21 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PathCreation;
 
 public class CarNpcController : MonoBehaviour
 {
-    // private float horizontalInput;
-    // private float verticalInput;
+    private float horizontalInput;
+    private float verticalInput;
     private float currentSteerAngle;
     private Vector3 lookDirection;
     // private Quaternion lookRotation;
-    // private float currentBreakForce;
-    // private bool isBreaking;
 
     [SerializeField] private float motorForce;
-    [SerializeField] private float speed = 10f;
+    // [SerializeField] private float speed = 10f;
     // [SerializeField] private float rotSpeed = 10f;
-    // [SerializeField] private float breakForce;
     [SerializeField] private float maxSteerAngle;
     [SerializeField] private float massCenter = -0.9f;
 
@@ -32,6 +30,9 @@ public class CarNpcController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform targetToBeFollowed;
 
+    public PathCreator pathCreator;
+    public EndOfPathInstruction endOfPathInstruction;
+
     private void Start()
     {
         rb.centerOfMass = new Vector3(0, massCenter, 0);
@@ -39,8 +40,8 @@ public class CarNpcController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        lookDirection = (targetToBeFollowed.position - transform.position).normalized;
-        transform.Translate(lookDirection * Time.deltaTime * speed);
+        // lookDirection = (targetToBeFollowed.position - transform.position).normalized;
+        // transform.Translate(lookDirection * Time.deltaTime * speed);
         // transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
 
         // lookDirection = targetToBeFollowed.position - transform.position;
@@ -48,61 +49,71 @@ public class CarNpcController : MonoBehaviour
         // Vector3 newDirection = Vector3.RotateTowards(transform.forward, lookDirection, singleStep, 0.0f);
         // transform.rotation = Quaternion.LookRotation(newDirection);
 
+        // transform.LookAt(targetToBeFollowed.position + new Vector3(0.0f, 2.0f, 0.0f));
         // transform.LookAt(targetToBeFollowed.position);
         // transform.Translate(0.0f, 0.0f, Time.deltaTime * speed);
 
-        // GetInput();
-        // HadleSteering();
-        // HandleMotor();
-        // UpdateWheels();
+        GetInput();
+        HadleSteering();
+        HandleMotor();
+        UpdateWheels();
     }
 
-    // private void GetInput()
-    // {
-    //     horizontalInput = Input.GetAxis("Horizontal");
-    //     verticalInput = Input.GetAxis("Vertical");
-    // }
+    private void GetInput()
+    {
+        // Debug.Log("GetInput()");
+        Vector3 pontoDeProva = transform.position + transform.forward * 3;
+        float distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(pontoDeProva);
+        Vector3 posicaoPontoNoPath = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+
+        Vector3 t1 = Vector3.Scale((posicaoPontoNoPath - transform.position).normalized, new Vector3(1, 0, 1));
+        float ang = Vector3.SignedAngle(transform.forward, t1, Vector3.up);
+        if(ang > 0)
+        {
+            horizontalInput = 1;
+        }
+        else if(ang < 0)
+        {
+            horizontalInput = -1;
+        }
+        else
+        {
+            horizontalInput = 0;
+        }
+
+        // horizontalInput = Input.GetAxis("Horizontal");
+        // verticalInput = Input.GetAxis("Vertical");
+        verticalInput = 1;
+    }
     
-    // private void HandleMotor()
-    // {
-    //     frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-    //     frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-    //     currentBreakForce = isBreaking ? breakForce : 0f;
-    //     if (isBreaking)
-    //     {
-    //         ApplayBreaking();
-    //     }
-    // }
+    private void HandleMotor()
+    {
+        // Debug.Log("HandleMotor()");
+        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
+        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+    }
 
-    // private void ApplayBreaking()
-    // {
-    //     frontLeftWheelCollider.motorTorque = currentBreakForce;
-    //     frontRightWheelCollider.motorTorque = currentBreakForce;
-    //     rearLeftWheelCollider.motorTorque = currentBreakForce;
-    //     rearRightWheelCollider.motorTorque = currentBreakForce;
-    // }
+    private void HadleSteering()
+    {
+        currentSteerAngle = maxSteerAngle * horizontalInput;
+        frontLeftWheelCollider.steerAngle = currentSteerAngle;
+        frontRightWheelCollider.steerAngle = currentSteerAngle;
+    }
 
-    // private void HadleSteering()
-    // {
-    //     currentSteerAngle = maxSteerAngle * motorForce;
-    //     frontLeftWheelCollider.steerAngle = currentSteerAngle;
-    //     frontRightWheelCollider.steerAngle = currentSteerAngle;
-    // }
+    private void UpdateWheels()
+    {
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftTransform);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightTransform);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftTransform);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightTransform);
+    }
 
-    // private void UpdateWheels()
-    // {
-    //     UpdateSingleWheel(frontLeftWheelCollider, frontLeftTransform);
-    //     UpdateSingleWheel(frontRightWheelCollider, frontRightTransform);
-    //     UpdateSingleWheel(rearLeftWheelCollider, rearLeftTransform);
-    //     UpdateSingleWheel(rearRightWheelCollider, rearRightTransform);
-    // }
-
-    // private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
-    // {
-    //     Vector3 pos = wheelTransform.position;
-    //     Quaternion rot = wheelTransform.rotation;
-    //     wheelCollider.GetWorldPose(out pos, out rot);
-    //     wheelTransform.rotation = rot;
-    //     wheelTransform.position = pos;
-    // }
+    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
+    {
+        Vector3 pos = wheelTransform.position;
+        Quaternion rot = wheelTransform.rotation;
+        wheelCollider.GetWorldPose(out pos, out rot);
+        wheelTransform.rotation = rot;
+        wheelTransform.position = pos;
+    }
 }

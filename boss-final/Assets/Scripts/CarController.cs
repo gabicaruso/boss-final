@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PathCreation;
 
 public class CarController : MonoBehaviour
 {
@@ -27,14 +28,18 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearRightTransform;
 
     [SerializeField] private Rigidbody rb;
-    
+    [SerializeField] private Transform targetToBeFollowed;
+
+    public PathCreator pathCreator;
+    public EndOfPathInstruction endOfPathInstruction;
+
     private float check = 0;
     public static int voltas;
 
     private void Start()
     {
-        FindObjectOfType<AudioManager>().Play("music");
-        FindObjectOfType<AudioManager>().Play("car idle");
+        // FindObjectOfType<AudioManager>().Play("music");
+        // FindObjectOfType<AudioManager>().Play("car idle");
         
         rb.centerOfMass = new Vector3(0, massCenter, 0);
         voltas = 1;
@@ -56,8 +61,31 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
+        // Debug.Log("GetInput()");
+        // Vector3 pontoDeProva = transform.position + transform.forward * 3;
+        // float distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(pontoDeProva);
+        // Vector3 posicaoPontoNoPath = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+
+        // Vector3 t1 = Vector3.Scale((posicaoPontoNoPath - transform.position).normalized, new Vector3(1, 0, 1));
+        // float ang = Vector3.SignedAngle(transform.forward, t1, Vector3.up);
+        // if(ang > 0)
+        // {
+        //     horizontalInput = 1;
+        // }
+        // else if(ang < 0)
+        // {
+        //     horizontalInput = -1;
+        // }
+        // else
+        // {
+        //     horizontalInput = 0;
+        // }
+
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+        Debug.Log(horizontalInput);
+        Debug.Log(verticalInput);
+        // verticalInput = 1;
     }
     
     private void HandleMotor()
