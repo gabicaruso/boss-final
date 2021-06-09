@@ -26,7 +26,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftTransform;
     [SerializeField] private Transform rearRightTransform;
 
-    public Rigidbody rb;
+    [SerializeField] private Rigidbody rb;
+    
     private float check = 0;
     public static int voltas;
 

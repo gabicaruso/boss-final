@@ -30607,7 +30607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 2, z: -7}
-  target: {fileID: 2702685726104152061}
+  target: {fileID: 4020022571249136503}
   translateSpeed: 10
   rotationSpeed: 10
 --- !u!124 &538517558
@@ -63458,6 +63458,115 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153967488}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1156409201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156409206}
+  - component: {fileID: 1156409205}
+  - component: {fileID: 1156409204}
+  - component: {fileID: 1156409203}
+  - component: {fileID: 1156409202}
+  m_Layer: 0
+  m_Name: ObjectToBeFollowed
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1156409202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156409201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aabe1a2dec93349b06e6e5dc51bc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCreator: {fileID: 2077402643}
+  endOfPathInstruction: 0
+  speed: 10
+--- !u!135 &1156409203
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156409201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1156409204
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156409201}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1156409205
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156409201}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1156409206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156409201}
+  m_LocalRotation: {x: -0, y: 0.06894975, z: -0, w: 0.99762017}
+  m_LocalPosition: {x: 237.02, y: 1.010734, z: 204.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 7.9070005, z: 0}
 --- !u!1 &1156626123
 GameObject:
   m_ObjectHideFlags: 0
@@ -114446,18 +114555,18 @@ MonoBehaviour:
       - {x: 4.931691, y: 0, z: 21.098179}
       - {x: 8.061523, y: 0, z: 32.047546}
       - {x: 9.945994, y: 0, z: 38.64016}
-      - {x: 14.318769, y: 0.3947916, z: 45.600037}
-      - {x: 15.012985, y: 0.3947916, z: 46.931458}
-      - {x: 17.496399, y: 0.3947916, z: 52.70804}
-      - {x: 18.858353, y: 1.1908776, z: 58.57132}
-      - {x: 19.18718, y: 1.1908776, z: 72.301575}
-      - {x: 19.22084, y: 1.1908776, z: 73.3761}
-      - {x: 19.175568, y: 2.2591293, z: 87.51959}
-      - {x: 14.021378, y: 2.2591293, z: 90.476166}
-      - {x: 11.764648, y: 2.2591293, z: 91.84833}
-      - {x: 9.727936, y: 1.9354897, z: 93.42224}
-      - {x: 2.9284363, y: 3.1632214, z: 92.856415}
-      - {x: -47.344753, y: 12.240653, z: 88.67289}
+      - {x: 14.318769, y: 0, z: 45.600037}
+      - {x: 15.012985, y: 0, z: 46.931458}
+      - {x: 17.496399, y: 0, z: 52.70804}
+      - {x: 18.858353, y: 0, z: 58.57132}
+      - {x: 19.18718, y: 0, z: 72.301575}
+      - {x: 19.22084, y: 0, z: 73.3761}
+      - {x: 19.175568, y: 0, z: 87.51959}
+      - {x: 14.021378, y: 0, z: 90.476166}
+      - {x: 11.764648, y: 0, z: 91.84833}
+      - {x: 9.727936, y: 0, z: 93.42224}
+      - {x: 2.9284363, y: 0, z: 92.856415}
+      - {x: -47.344753, y: 0, z: 88.67289}
       - {x: -72.96864, y: 0, z: 78.32233}
       - {x: -98.65521, y: 0, z: 74.05838}
       - {x: -117.59235, y: 0, z: 70.91483}
@@ -114567,8 +114676,8 @@ MonoBehaviour:
       autoControlLength: 0.3
       boundsUpToDate: 0
       bounds:
-        m_Center: {x: 38.34029, y: 0, z: 153.25519}
-        m_Extent: {x: 35.494244, y: 0, z: 158.4696}
+        m_Center: {x: 0.7075348, y: 3.2571108, z: 37.123886}
+        m_Extent: {x: 167.93336, y: 3.2571108, z: 175.3963}
       perAnchorNormalsAngle:
       - 0
       - 0
@@ -114612,20 +114721,20 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 90
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1
     showPathBounds: 0
     showPerSegmentBounds: 0
     displayAnchorPoints: 1
-    displayControlPoints: 1
+    displayControlPoints: 0
     bezierHandleScale: 1
     globalDisplaySettingsFoldout: 0
     keepConstantHandleSize: 0
     showNormalsInVertexMode: 0
     showBezierPathInVertexMode: 0
-    showDisplayOptions: 0
+    showDisplayOptions: 1
     showPathOptions: 1
     showVertexPathDisplayOptions: 0
     showVertexPathOptions: 1
@@ -114641,7 +114750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077402642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234.8, y: 0.35, z: 209.6}
+  m_LocalPosition: {x: 234.8, y: -2, z: 209.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -118171,6 +118280,7 @@ GameObject:
   - component: {fileID: 4025776541023650400}
   - component: {fileID: 4025776541023650399}
   - component: {fileID: 4025776541023650401}
+  - component: {fileID: 4025776541023650398}
   m_Layer: 0
   m_Name: Car NPC
   m_TagString: Untagged
@@ -118178,6 +118288,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4025776541023650398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025776541023650397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e983f332d72347b7833a25b33ff7f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motorForce: 1000
+  speed: 12
+  maxSteerAngle: 40
+  massCenter: -0.9
+  frontLeftWheelCollider: {fileID: 1184905813}
+  frontRightWheelCollider: {fileID: 799099079}
+  rearLeftWheelCollider: {fileID: 804515964}
+  rearRightWheelCollider: {fileID: 269944325}
+  frontLeftTransform: {fileID: 1117172783}
+  frontRightTransform: {fileID: 2113065678}
+  rearLeftTransform: {fileID: 348870756}
+  rearRightTransform: {fileID: 624417031}
+  rb: {fileID: 4025776541023650400}
+  targetToBeFollowed: {fileID: 1156409206}
 --- !u!65 &4025776541023650399
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118214,7 +118350,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4025776541023650397}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33aabe1a2dec93349b06e6e5dc51bc06, type: 3}
   m_Name: 
