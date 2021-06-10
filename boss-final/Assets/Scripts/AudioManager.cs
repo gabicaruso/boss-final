@@ -34,11 +34,25 @@ public class AudioManager : MonoBehaviour
 
     public void Play (string name)
     {
+        CarController.isPlayingMotor = 1;
+
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             return;
         }
         s.source.Play();
+    }
+
+    public void Stop (string name)
+    {
+        CarController.isPlayingMotor = 0;
+
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            return;
+        }
+        s.source.Stop();
     }
 }

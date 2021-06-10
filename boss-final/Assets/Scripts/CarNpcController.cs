@@ -85,8 +85,8 @@ public class CarNpcController : MonoBehaviour
         // horizontalInput = Input.GetAxis("Horizontal");
         // verticalInput = Input.GetAxis("Vertical");
 
-        Debug.Log(horizontalInput);
-        Debug.Log(verticalInput);
+        // Debug.Log(horizontalInput);
+        // Debug.Log(verticalInput);
     }
     
     private void HandleMotor()
