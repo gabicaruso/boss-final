@@ -40,6 +40,10 @@ public class CarNpcController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // acceleration = (rigidbody.velocity - lastVelocity) / Time.fixedDeltaTime;
+        // lastVelocity = rigidbody.velocity;
+
+        Debug.Log($"{rb.velocity.magnitude} - {motorForce}");
         // lookDirection = (targetToBeFollowed.position - transform.position).normalized;
         // transform.Translate(lookDirection * Time.deltaTime * speed);
         // transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
@@ -62,36 +66,64 @@ public class CarNpcController : MonoBehaviour
     private void GetInput()
     {
         // Debug.Log("GetInput()");
-        Vector3 pontoDeProva = transform.position + transform.forward * 3;
-        float distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(pontoDeProva);
-        Vector3 posicaoPontoNoPath = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+        // Vector3 pontoDeProva = transform.position + transform.forward * 3;
+        // float distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(pontoDeProva);
+        // Vector3 posicaoPontoNoPath = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
 
-        Vector3 t1 = Vector3.Scale((posicaoPontoNoPath - transform.position).normalized, new Vector3(1, 0, 1));
+        // lookDirection = (targetToBeFollowed.position - transform.position).normalized;
+
+        Vector3 t1 = Vector3.Scale((targetToBeFollowed.position - transform.position).normalized, new Vector3(1, 0, 1));
         float ang = Vector3.SignedAngle(transform.forward, t1, Vector3.up);
-        if(ang > 0)
-        {
-            horizontalInput = 1;
-        }
-        else if(ang < 0)
-        {
-            horizontalInput = -1;
-        }
-        else if(ang == 0)
-        {
-            horizontalInput = 0;
-        }
-        verticalInput = 1;
+
+        // Vector3 t1 = Vector3.Scale((folowTarget.position - transform.position).normalized, new Vector3(1, 0, 1));
+
+        // Debug.DrawRay(transform.position, transform.forward * 4, Color.cyan, 10);
+        // Debug.DrawRay(transform.position, t1, Color.magenta, 10);
+
+        // Debug.Log((Vector3.SignedAngle(transform.forward, t1, Vector3.up)>0));
+
+        // if(ang > 0)
+        // {
+        //     horizontalInput = 1;
+        // }
+        // else if(ang < 0)
+        // {
+        //     horizontalInput = -1;
+        // }
+        // else
+        // {
+        //     horizontalInput = 0;
+        // }
+        horizontalInput = ang/10; 
+        verticalInput = 0.25f;
 
         // horizontalInput = Input.GetAxis("Horizontal");
         // verticalInput = Input.GetAxis("Vertical");
 
         // Debug.Log(horizontalInput);
         // Debug.Log(verticalInput);
+        // Debug.Log(lookDirection);
     }
     
     private void HandleMotor()
     {
         // Debug.Log("HandleMotor()");
+        if (rb.velocity.magnitude > 9)
+        {
+            motorForce = 100;
+        } 
+        else if (rb.velocity.magnitude < 2)
+        {
+            motorForce = 700;
+        }
+        else if (rb.velocity.magnitude < 8 && rb.velocity.magnitude > 2)
+        {
+            motorForce = 500;
+        }
+        else if (rb.velocity.magnitude > 8 && rb.velocity.magnitude < 9)
+        {
+            motorForce = 300;
+        }
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
     }

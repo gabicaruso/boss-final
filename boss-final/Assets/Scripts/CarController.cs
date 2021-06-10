@@ -51,7 +51,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(isPlayingMotor);
+        // Debug.Log(isPlayingMotor);
 
         if(voltas >= 4)
         {
