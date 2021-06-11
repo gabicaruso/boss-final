@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
+using UnityEngine.SceneManagement;
 
 public class CarNpcController : MonoBehaviour
 {
@@ -30,13 +31,23 @@ public class CarNpcController : MonoBehaviour
     public PathCreator pathCreator;
     public EndOfPathInstruction endOfPathInstruction;
 
+    private float checkNPC = 0;
+    public static int voltasNPC;
+
     private void Start()
     {
         rb.centerOfMass = new Vector3(0, massCenter, 0);
+        voltasNPC = 1;
     }
 
     private void FixedUpdate()
     {
+        if(voltasNPC >= 4)
+        {
+            Debug.Log("terminou a corrida");
+            SceneManager.LoadScene("Menu");
+        }
+
         GetInput();
         HadleSteering();
         HandleMotor();
@@ -120,4 +131,40 @@ public class CarNpcController : MonoBehaviour
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        Debug.Log($"trigger");
+        if(col.CompareTag("check1") && checkNPC == 0)
+        {
+            Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
+            checkNPC = 1;
+        }
+        if(col.CompareTag("check2") && checkNPC == 1)
+        {
+            Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
+            checkNPC = 2;
+        }
+        if(col.CompareTag("check3") && checkNPC == 2)
+        {
+            Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
+            checkNPC = 3;
+        }
+        if(col.CompareTag("check4") && checkNPC == 3)
+        {
+            Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
+            checkNPC = 4;
+        }
+        if(col.CompareTag("check5") && checkNPC == 4)
+        {
+            Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
+            checkNPC = 5;
+        }
+        if(col.CompareTag("check1") && checkNPC == 5)
+        {
+            voltasNPC++;
+            Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
+            checkNPC = 0;
+        }
+    }  
 }
