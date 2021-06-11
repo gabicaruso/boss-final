@@ -42,7 +42,7 @@ public class CarNpcController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(voltasNPC >= 4)
+        if(voltasNPC >= 3)
         {
             Debug.Log("terminou a corrida");
             SceneManager.LoadScene("Menu");
