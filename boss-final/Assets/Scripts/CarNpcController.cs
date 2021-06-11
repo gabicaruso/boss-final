@@ -134,7 +134,6 @@ public class CarNpcController : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log($"trigger");
         if(col.CompareTag("check1") && checkNPC == 0)
         {
             Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
@@ -144,6 +143,7 @@ public class CarNpcController : MonoBehaviour
         {
             Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
             checkNPC = 2;
+            Debug.Log($"trigger");
         }
         if(col.CompareTag("check3") && checkNPC == 2)
         {
@@ -163,8 +163,8 @@ public class CarNpcController : MonoBehaviour
         if(col.CompareTag("check1") && checkNPC == 5)
         {
             voltasNPC++;
-            Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
             checkNPC = 0;
+            Debug.Log($"checkNPC {checkNPC} | volta {voltasNPC}");
         }
     }  
 }
