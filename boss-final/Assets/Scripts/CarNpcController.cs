@@ -44,8 +44,8 @@ public class CarNpcController : MonoBehaviour
         // acceleration = (rigidbody.velocity - lastVelocity) / Time.fixedDeltaTime;
         // lastVelocity = rigidbody.velocity;
 
-        // Debug.Log($"{rb.velocity.magnitude} - {motorForce}");
-        Debug.Log($"{distanceTravelled} | {nextDistanceTravelled}");
+        Debug.Log($"{rb.velocity.magnitude} - {motorForce}");
+        // Debug.Log($"{distanceTravelled} | {nextDistanceTravelled}");
         // lookDirection = (targetToBeFollowed.position - transform.position).normalized;
         // transform.Translate(lookDirection * Time.deltaTime * speed);
         // transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
