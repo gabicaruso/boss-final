@@ -28,10 +28,6 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearRightTransform;
 
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Transform targetToBeFollowed;
-
-    public PathCreator pathCreator;
-    public EndOfPathInstruction endOfPathInstruction;
 
     private float check = 0;
     public static int voltas;

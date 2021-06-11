@@ -26,7 +26,6 @@ public class CarNpcController : MonoBehaviour
     [SerializeField] private Transform rearRightTransform;
 
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Transform targetToBeFollowed;
 
     public PathCreator pathCreator;
     public EndOfPathInstruction endOfPathInstruction;
