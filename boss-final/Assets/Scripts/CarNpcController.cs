@@ -8,8 +8,9 @@ public class CarNpcController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private float currentSteerAngle;
-    private Vector3 lookDirection;
-    // private Quaternion lookRotation;
+    // private Vector3 lookDirection;
+    private float distanceTravelled = 0;
+    private float nextDistanceTravelled = 0;
 
     [SerializeField] private float motorForce;
     // [SerializeField] private float speed = 10f;
@@ -43,7 +44,8 @@ public class CarNpcController : MonoBehaviour
         // acceleration = (rigidbody.velocity - lastVelocity) / Time.fixedDeltaTime;
         // lastVelocity = rigidbody.velocity;
 
-        Debug.Log($"{rb.velocity.magnitude} - {motorForce}");
+        // Debug.Log($"{rb.velocity.magnitude} - {motorForce}");
+        Debug.Log($"{distanceTravelled} | {nextDistanceTravelled}");
         // lookDirection = (targetToBeFollowed.position - transform.position).normalized;
         // transform.Translate(lookDirection * Time.deltaTime * speed);
         // transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotSpeed);
@@ -63,46 +65,45 @@ public class CarNpcController : MonoBehaviour
         UpdateWheels();
     }
 
+    float hinputForAngle(float angle)
+    {
+        float deadzone = 5.0f;
+
+        if(Mathf.Abs(angle) <= deadzone) return 0;
+        return angle / Mathf.Abs(angle);
+    }
+
+    float vinputForAngle(float ang)
+    {
+        // float deadzone = 5.0f;
+
+        ang = Mathf.Abs(ang);
+        return (180 - ang) / 180;
+    }
+
     private void GetInput()
     {
-        // Debug.Log("GetInput()");
-        // Vector3 pontoDeProva = transform.position + transform.forward * 3;
-        // float distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(pontoDeProva);
-        // Vector3 posicaoPontoNoPath = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+        // Vector3 t1 = Vector3.Scale((targetToBeFollowed.position - transform.position).normalized, new Vector3(1, 0, 1));
+        // float ang = Vector3.SignedAngle(transform.forward, t1, Vector3.up);
 
-        // lookDirection = (targetToBeFollowed.position - transform.position).normalized;
+        Vector3 pontoDeProva = transform.position + transform.forward * 5;
+        nextDistanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(pontoDeProva);
+        if (nextDistanceTravelled > distanceTravelled + 0.005f)
+        {
+            distanceTravelled = nextDistanceTravelled;
+        }
+        else
+        {
+            distanceTravelled = nextDistanceTravelled + 6f;
+        }
+        Vector3 pontoNoPath = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
 
-        Vector3 t1 = Vector3.Scale((targetToBeFollowed.position - transform.position).normalized, new Vector3(1, 0, 1));
+        Vector3 t1 = Vector3.Scale((pontoNoPath - transform.position).normalized, new Vector3(1, 0, 1));
         float ang = Vector3.SignedAngle(transform.forward, t1, Vector3.up);
-
-        // Vector3 t1 = Vector3.Scale((folowTarget.position - transform.position).normalized, new Vector3(1, 0, 1));
-
-        // Debug.DrawRay(transform.position, transform.forward * 4, Color.cyan, 10);
-        // Debug.DrawRay(transform.position, t1, Color.magenta, 10);
-
-        // Debug.Log((Vector3.SignedAngle(transform.forward, t1, Vector3.up)>0));
-
-        // if(ang > 0)
-        // {
-        //     horizontalInput = 1;
-        // }
-        // else if(ang < 0)
-        // {
-        //     horizontalInput = -1;
-        // }
-        // else
-        // {
-        //     horizontalInput = 0;
-        // }
-        horizontalInput = ang/10; 
-        verticalInput = 0.25f;
-
-        // horizontalInput = Input.GetAxis("Horizontal");
-        // verticalInput = Input.GetAxis("Vertical");
-
-        // Debug.Log(horizontalInput);
-        // Debug.Log(verticalInput);
-        // Debug.Log(lookDirection);
+        horizontalInput = hinputForAngle(ang);
+        // Debug.Log($"HInput: {horizontalInput}");
+        verticalInput = vinputForAngle(ang);
+        // Debug.Log($"VInput: {verticalInput}");
     }
     
     private void HandleMotor()
@@ -114,18 +115,20 @@ public class CarNpcController : MonoBehaviour
         } 
         else if (rb.velocity.magnitude < 2)
         {
-            motorForce = 700;
-        }
-        else if (rb.velocity.magnitude < 8 && rb.velocity.magnitude > 2)
-        {
-            motorForce = 500;
-        }
-        else if (rb.velocity.magnitude > 8 && rb.velocity.magnitude < 9)
-        {
             motorForce = 300;
         }
+        else if (rb.velocity.magnitude < 9 && rb.velocity.magnitude > 2)
+        {
+            motorForce = 180;
+        }
+        // else if (rb.velocity.magnitude > 8 && rb.velocity.magnitude < 9)
+        // {
+        //     motorForce = 300;
+        // }
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
+        rearRightWheelCollider.motorTorque = verticalInput * motorForce;
     }
 
     private void HadleSteering()
