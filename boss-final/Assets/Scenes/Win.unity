@@ -195,6 +195,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91839733}
   m_CullTransparentMesh: 0
+--- !u!1 &327011182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 327011184}
+  - component: {fileID: 327011183}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &327011183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327011182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55de71bd890543a398081ed991101f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: win
+    clip: {fileID: 8300000, guid: f75a1fefdd3934c24baf6e57eab0250e, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+    mixer: {fileID: -7693003915715562157, guid: f4b0b6b6ca8fc482d8b95f03dd3a61bb,
+      type: 2}
+  - name: button
+    clip: {fileID: 8300000, guid: ddfcec78ff0f74bfd9fd549fe41e60f3, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+    mixer: {fileID: -7693003915715562157, guid: f4b0b6b6ca8fc482d8b95f03dd3a61bb,
+      type: 2}
+--- !u!4 &327011184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327011182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 504.53064, y: 285.74615, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &424038184
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +338,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1984725697}
-        m_MethodName: Game
+        m_MethodName: Happy
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

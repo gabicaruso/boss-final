@@ -55,13 +55,11 @@ public class Pause : MonoBehaviour
     public void SetVolumeMusica(float volume)
     {
         mixer.SetFloat("music", volume);
-        Debug.Log(volume);
     }
 
     public void SetVolumeEfeitos(float volume)
     {
         mixer.SetFloat("effects", volume);
-        Debug.Log(volume);
     }
 
     void Update()

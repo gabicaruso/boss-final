@@ -45,8 +45,6 @@ public class CarController : MonoBehaviour
     {
         if(voltas >= 3)
         {
-            Debug.Log("terminou a corrida");
-            FindObjectOfType<AudioManager>().Play("winner");
             SceneManager.LoadScene("Win");
         }
 
@@ -112,36 +110,26 @@ public class CarController : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.CompareTag("check1") && check == 5)
-        {
-            // Debug.Log($"check {check}, obj {col}");
-            voltas++;
-            check = 0;
-        }
         if(col.CompareTag("check1") && check == 0)
         {
-            // Debug.Log($"check {check}, obj {col}");
+            voltas++;
             check = 1;
         }
         if(col.CompareTag("check2") && check == 1)
         {
-            // Debug.Log($"check {check}, obj {col}");
             check = 2;
         }
         if(col.CompareTag("check3") && check == 2)
         {
-            // Debug.Log($"check {check}, obj {col}");
             check = 3;
         }
         if(col.CompareTag("check4") && check == 3)
         {
-            // Debug.Log($"check {check}, obj {col}");
             check = 4;
         }
         if(col.CompareTag("check5") && check == 4)
         {
-            // Debug.Log($"check {check}, obj {col}");
-            check = 5;
+            check = 0;
         }
     }  
 }

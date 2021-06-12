@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Winner : MonoBehaviour
 {
-    public void Game()
+    public void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("winner");
+    }
+    
+    public void Happy()
     {
         FindObjectOfType<AudioManager>().Play("button");
         SceneManager.LoadScene("Menu");
