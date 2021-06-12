@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Drift Track.unity
     guid: e82a0c7cf6aa6504daa551b17979d57e
+  - enabled: 1
+    path: Assets/Scenes/Win.unity
+    guid: bf0863912ea274bfea7558b5f910b628
+  - enabled: 1
+    path: Assets/Scenes/Lose.unity
+    guid: 8655665a9ca6440a2b76a09b7ffae34f
   m_configObjects: {}

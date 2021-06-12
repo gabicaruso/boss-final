@@ -42,17 +42,17 @@ public class CarController : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("car idle");
         
         rb.centerOfMass = new Vector3(0, massCenter, 0);
-        voltas = 1;
+        voltas = 0;
     }
 
     private void FixedUpdate()
     {
         // Debug.Log(isPlayingMotor);
 
-        if(voltas >= 4)
+        if(voltas >= 3)
         {
             Debug.Log("terminou a corrida");
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Win");
         }
 
         GetInput();
@@ -123,6 +123,12 @@ public class CarController : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+        if(col.CompareTag("check1") && check == 5)
+        {
+            // Debug.Log($"check {check}, obj {col}");
+            voltas++;
+            check = 0;
+        }
         if(col.CompareTag("check1") && check == 0)
         {
             // Debug.Log($"check {check}, obj {col}");
@@ -147,12 +153,6 @@ public class CarController : MonoBehaviour
         {
             // Debug.Log($"check {check}, obj {col}");
             check = 5;
-        }
-        if(col.CompareTag("check1") && check == 5)
-        {
-            // Debug.Log($"check {check}, obj {col}");
-            voltas++;
-            check = 0;
         }
     }  
 }

@@ -37,7 +37,7 @@ public class CarNpcController : MonoBehaviour
     private void Start()
     {
         rb.centerOfMass = new Vector3(0, massCenter, 0);
-        voltasNPC = 1;
+        voltasNPC = 0;
     }
 
     private void FixedUpdate()
@@ -45,7 +45,7 @@ public class CarNpcController : MonoBehaviour
         if(voltasNPC >= 3)
         {
             Debug.Log("terminou a corrida");
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("Lose");
         }
 
         GetInput();
