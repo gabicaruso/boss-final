@@ -89772,6 +89772,38 @@ MonoBehaviour:
     source: {fileID: 0}
     mixer: {fileID: -7693003915715562157, guid: f4b0b6b6ca8fc482d8b95f03dd3a61bb,
       type: 2}
+  - name: winner
+    clip: {fileID: 8300000, guid: f75a1fefdd3934c24baf6e57eab0250e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixer: {fileID: -7693003915715562157, guid: f4b0b6b6ca8fc482d8b95f03dd3a61bb,
+      type: 2}
+  - name: loser
+    clip: {fileID: 8300000, guid: 50ee632f670e94d39933eb3803517d07, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixer: {fileID: -7693003915715562157, guid: f4b0b6b6ca8fc482d8b95f03dd3a61bb,
+      type: 2}
+  - name: menu
+    clip: {fileID: 8300000, guid: 89b434cebef62433e9a519a3f3eaf2e2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    mixer: {fileID: -7693003915715562157, guid: f4b0b6b6ca8fc482d8b95f03dd3a61bb,
+      type: 2}
+  - name: button
+    clip: {fileID: 8300000, guid: ddfcec78ff0f74bfd9fd549fe41e60f3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixer: {fileID: -7693003915715562157, guid: f4b0b6b6ca8fc482d8b95f03dd3a61bb,
+      type: 2}
 --- !u!4 &1644800248
 Transform:
   m_ObjectHideFlags: 0
@@ -108387,7 +108419,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Aperte ESPA\xC7O caso tenha batido e necessite de assist\xEAncia!"
+  m_Text: "Aperte ESC para fazer um pit stop ou ESPA\xC7O para batidas ou assist\xEAncia
+    m\xE9dica!"
 --- !u!222 &1941161452
 CanvasRenderer:
   m_ObjectHideFlags: 0

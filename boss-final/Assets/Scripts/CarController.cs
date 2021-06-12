@@ -32,12 +32,8 @@ public class CarController : MonoBehaviour
     private float check = 0;
     public static int voltas;
 
-    public static float isPlayingMotor;
-
     private void Start()
     {
-        isPlayingMotor = 0;
-
         FindObjectOfType<AudioManager>().Play("music");
         FindObjectOfType<AudioManager>().Play("car idle");
         
@@ -47,11 +43,10 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Debug.Log(isPlayingMotor);
-
         if(voltas >= 3)
         {
             Debug.Log("terminou a corrida");
+            FindObjectOfType<AudioManager>().Play("winner");
             SceneManager.LoadScene("Win");
         }
 
@@ -67,19 +62,13 @@ public class CarController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
         if(Input.GetKeyDown(KeyCode.Space)) {
+            FindObjectOfType<AudioManager>().Play("button");
             SceneManager.LoadScene("Drift Track");
         }
     }
     
     private void HandleMotor()
     {
-        if (verticalInput > 0 && isPlayingMotor == 0)
-        {
-            FindObjectOfType<AudioManager>().Stop("car idle");
-            FindObjectOfType<AudioManager>().Play("motor");
-            isPlayingMotor = 1;
-        }
-
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentBreakForce = isBreaking ? breakForce : 0f;

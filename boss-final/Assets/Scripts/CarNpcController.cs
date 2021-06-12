@@ -45,6 +45,7 @@ public class CarNpcController : MonoBehaviour
         if(voltasNPC >= 3)
         {
             Debug.Log("terminou a corrida");
+            FindObjectOfType<AudioManager>().Play("loser");
             SceneManager.LoadScene("Lose");
         }
 

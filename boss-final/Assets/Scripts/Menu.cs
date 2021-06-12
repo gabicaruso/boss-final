@@ -7,6 +7,12 @@ public class Menu : MonoBehaviour
 {
     public void Game()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         SceneManager.LoadScene("Drift Track");
+    }
+
+    public void Start()
+    {
+        FindObjectOfType<AudioManager>().Play("menu");
     }
 }

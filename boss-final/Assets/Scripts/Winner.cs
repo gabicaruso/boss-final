@@ -7,6 +7,7 @@ public class Winner : MonoBehaviour
 {
     public void Game()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         SceneManager.LoadScene("Menu");
     }
 }

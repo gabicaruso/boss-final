@@ -30,6 +30,7 @@ public class Pause : MonoBehaviour
 
     public void ActivatePause()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         Time.timeScale = 0f;
         panel.SetActive(true);
         pausado = true;
@@ -37,6 +38,7 @@ public class Pause : MonoBehaviour
 
     public void DeactivatePause()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         Time.timeScale = 1f;
         panel.SetActive(false);
         pausado = false;
@@ -44,6 +46,7 @@ public class Pause : MonoBehaviour
 
     public void MenuButton()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         Time.timeScale = 1f;
         pausado = false;
         SceneManager.LoadScene("Menu");

@@ -7,6 +7,7 @@ public class EndGame : MonoBehaviour
 {
     public void Game()
     {
+        FindObjectOfType<AudioManager>().Play("button");
         SceneManager.LoadScene("Menu");
     }
 }
