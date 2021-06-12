@@ -43,7 +43,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(voltas >= 3)
+        if(voltas >= 4)
         {
             SceneManager.LoadScene("Win");
         }
