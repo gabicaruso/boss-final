@@ -65,6 +65,10 @@ public class CarController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            SceneManager.LoadScene("Drift Track");
+        }
     }
     
     private void HandleMotor()
@@ -73,7 +77,7 @@ public class CarController : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Stop("car idle");
             FindObjectOfType<AudioManager>().Play("motor");
-            // isPlayingMotor = 1;
+            isPlayingMotor = 1;
         }
 
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
@@ -121,32 +125,32 @@ public class CarController : MonoBehaviour
     {
         if(col.CompareTag("check1") && check == 0)
         {
-            Debug.Log($"check {check}, obj {col}");
+            // Debug.Log($"check {check}, obj {col}");
             check = 1;
         }
         if(col.CompareTag("check2") && check == 1)
         {
-            Debug.Log($"check {check}, obj {col}");
+            // Debug.Log($"check {check}, obj {col}");
             check = 2;
         }
         if(col.CompareTag("check3") && check == 2)
         {
-            Debug.Log($"check {check}, obj {col}");
+            // Debug.Log($"check {check}, obj {col}");
             check = 3;
         }
         if(col.CompareTag("check4") && check == 3)
         {
-            Debug.Log($"check {check}, obj {col}");
+            // Debug.Log($"check {check}, obj {col}");
             check = 4;
         }
         if(col.CompareTag("check5") && check == 4)
         {
-            Debug.Log($"check {check}, obj {col}");
+            // Debug.Log($"check {check}, obj {col}");
             check = 5;
         }
         if(col.CompareTag("check1") && check == 5)
         {
-            Debug.Log($"check {check}, obj {col}");
+            // Debug.Log($"check {check}, obj {col}");
             voltas++;
             check = 0;
         }
